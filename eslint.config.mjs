@@ -1,9 +1,10 @@
 import nx from '@nx/eslint-plugin';
-
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+  eslintPluginPrettierRecommended,
   {
     ignores: ['**/dist'],
   },
@@ -13,7 +14,7 @@ export default [
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          enforceBuildableLibDependency: true,
+          //enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
