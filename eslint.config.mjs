@@ -1,5 +1,5 @@
 import nx from '@nx/eslint-plugin';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
@@ -14,7 +14,7 @@ export default [
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          //enforceBuildableLibDependency: true,
+          enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
@@ -27,16 +27,7 @@ export default [
     },
   },
   {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
+    files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
     // Override or add rules here
     rules: {},
   },
