@@ -6,8 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './sign-up.page.html',
   styleUrl: './sign-up.page.scss',
 })
-export class SignUpPage {
-  constructor() {
-    console.log('SignUpPage created');
-  }
-}
+export class SignUpPage {}

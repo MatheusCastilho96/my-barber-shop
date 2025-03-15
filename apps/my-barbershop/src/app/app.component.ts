@@ -6,8 +6,4 @@ import { RouterModule } from '@angular/router';
   selector: 'mb-root',
   template: '<router-outlet></router-outlet>',
 })
-export class AppComponent {
-  constructor() {
-    console.log('AppComponent created');
-  }
-}
+export class AppComponent {}
