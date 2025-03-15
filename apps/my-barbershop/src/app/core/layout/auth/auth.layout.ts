@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  selector: 'mb-auth',
   imports: [RouterModule],
-  selector: 'mb-root',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './auth.layout.html',
+  styleUrl: './auth.layout.scss',
 })
-export class AppComponent {
+export class AuthLayout {
   constructor() {
-    console.log('AppComponent created');
+    console.log('AuthLayout created');
   }
 }

@@ -1,0 +1,16 @@
+{
+    "DOMAIN":{
+        "AUTH":{
+            "PAGES":{
+                "LOGIN": {
+                    "TITLE":"Iniciar sesión",
+                    "EMAIL":"Correo electrónico",
+                    "PASSWORD":"Contraseña",
+                    "REMEMBER":"Recuerda",
+                    "FORGOT":"¿Olvidaste tu contraseña?",
+                    "SUBMIT":"Enviar",
+                    "REGISTER":"Registrarse"}
+            }
+        }
+    }
+}
