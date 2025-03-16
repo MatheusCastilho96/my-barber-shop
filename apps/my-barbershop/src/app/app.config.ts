@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom, isDevMode } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom, inject, isDevMode, provideAppInitializer } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { pt_BR, provideNzI18n } from 'ng-zorro-antd/i18n';
@@ -9,6 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { ThemeService } from '@shared/services/theme/theme.service';
 
 registerLocaleData(pt);
 
@@ -20,7 +21,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(FormsModule),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideHttpClient(),
     provideTransloco({
       config: {
         availableLangs: ['pt-br', 'en', 'es'],
@@ -31,5 +31,6 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
+    provideAppInitializer(() => inject(ThemeService).loadTheme()),
   ],
 };
