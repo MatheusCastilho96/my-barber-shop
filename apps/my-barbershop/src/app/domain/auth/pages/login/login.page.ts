@@ -1,23 +1,42 @@
 import { Component, inject } from '@angular/core';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
-import { ThemeService } from '@shared/services/theme/theme.service';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { injectSupabase } from '@shared/functions/inject-supabase.function';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'mb-login',
-  imports: [NzButtonComponent, NzFlexModule, TranslocoModule],
+  imports: [NzButtonComponent, NzFlexModule, NzFormModule, NzInputModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.page.html',
   styleUrl: './login.page.scss',
 })
 export class LoginPage {
-  private themeService = inject(ThemeService);
-  private translocoService = inject(TranslocoService);
+  private subabase = injectSupabase();
+  private notificationService = inject(NzNotificationService);
+  private router = inject(Router);
 
-  changeLang(lang: string) {
-    this.translocoService.setActiveLang(lang);
+  loginForm: FormGroup;
+
+  constructor() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
-
-  toggleTheme() {
-    this.themeService.toggleTheme();
+  async login() {
+    if (!this.loginForm.valid) {
+      this.notificationService.error('Erro', 'Preencha os campos corretamente');
+      return;
+    }
+    const { email, password } = this.loginForm.value;
+    const { error } = await this.subabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      this.notificationService.error('Erro ao fazer o login', error.message);
+      return;
+    }
+    this.router.navigate(['/']);
   }
 }

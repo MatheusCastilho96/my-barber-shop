@@ -1,9 +1,7 @@
 export interface iUser {
   id: string;
-  name: string;
   email: string;
-  password: string;
-  status: string;
-  created_at: Date;
+  full_name: string;
   updated_at: Date;
+  avatar_url: string;
 }

@@ -11,6 +11,7 @@
     "paths": {
       "@core/*": ["apps/my-barbershop/src/app/core/*"],
       "@domain/*": ["apps/my-barbershop/src/app/domain/*"],
+      "@env/*": ["apps/my-barbershop/src/environments/*"],
       "@shared/*": ["apps/my-barbershop/src/app/shared/*"],
       "@widget/*": ["apps/my-barbershop/src/app/widget/*"],
       "medias": ["apps/my-barbershop/src/styles/_medias.scss"],
